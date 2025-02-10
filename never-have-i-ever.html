@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Never Have I Ever (18+)</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Never Have I Ever (18+)</h1>
+
+    <div class="game-content"></div>
+        <p id="question"></p>
+        <button id="next-btn">Next Question</button>
+    
+
+      <p id="mini-games">Mini-games</p>
+
+      <!-- Buttons for new games -->
+      <div class="mini-games">
+        <button><a href="dicee.html" class="game-link">Dice</a></button>
+        <button><a href="truth-or-dare-adult.html" class="game-link">Truth or Dare (18+)</a></button>
+        <button><a href="truth-or-dare.html" class="game-link">Truth or Dare</a></button>
+      </div>
+
+      <footer>Enjoy, but play responsibly!</footer>
+    </div>
+
+    <audio id="dice-roll-sound" src="./assets/truth.mp3"></audio>
+
+    <script>
+      const adultQuestions = [
+        "Never have I ever sent a naughty text to someone.",
+        "Never have I ever kissed someone of the same gender.",
+        "Never have I ever used a dating app.",
+        "Never have I ever had a one-night stand.",
+        "Never have I ever gotten caught doing something inappropriate in public.",
+        "Never have I ever had a crush on someone at work.",
+        "Never have I ever sexted.",
+        "Never have I ever watched an adult movie with a partner.",
+        "Never have I ever been caught cheating.",
+        "Never have I ever flirted to get something I wanted.",
+        "Never have I ever gone skinny dipping.",
+        "Never have I ever done something in bed I regret.",
+        "Never have I ever lied about my relationship status.",
+        "Never have I ever sent a drunk text.",
+        "Never have I ever kissed someone in a bathroom stall.",
+        "Never have I ever lust for someone that's not my partner.",
+        "Never have I ever tried masturbating.",
+        "Never have I ever cheated on my girlfriend/boyfriend.",
+        "Never have I ever think about going back with my ex.",
+        "Never have I ever nakipaglaplapan sa 'di ko kilala.",
+        "Never have I ever had a controversial relationship.",
+        "Never have I ever kissed someone under the influence of alcohol.",
+        "Never have I ever hooked up with someone I met at a party.",
+        "Never have I ever nagpanggap na lasing para maka-score.",
+        "Never have I ever liked someone while I was already in a relationship.",
+        "Never have I ever hooked up with a friend’s ex.",
+        "Never have I ever gotten a hickey in a public place.",
+        "Never have I ever made out with someone in a car.",
+        "Never have I ever kissed more than one person in one night.",
+        "Never have I ever kissed someone on the first date.",
+        "Never have I ever taken a shower with someone.",
+        "Never have I ever flirted with someone just for fun.",
+        "Never have I ever becomes a sugar mommy/daddy.",
+        "Never have I ever been in a friends with benefits relationship.",
+        "Never have I ever gotten drunk and kissed someone I didn’t know.",
+        "Never have I ever pretended to be interested in someone to get out of an awkward situation.",
+        "Never have I ever kissed someone who was already in a relationship.",
+        "Never have I ever made a move on someone just to see if they’d reciprocate.",
+        "Never have I ever kissed someone in the rain.",
+        "Never have I ever done something I regret in a relationship.",
+        "Never have I ever lied about my body count.",
+        "Never have I ever flirted back with someone who I don't really because I'm too shy to reject them.",
+        "Never have I ever had a feelings for my friend that I didn't confess to them.",
+        "Never have I ever steal someone's boyfriend/girlfriend.",
+        "Never have I ever becomes a mistress.",
+      ];
+
+      const questionElement = document.getElementById('question');
+      const nextButton = document.getElementById('next-btn');
+      
+      let currentQuestionIndex = 0;
+
+      function displayNextQuestion() {
+        if (currentQuestionIndex < adultQuestions.length) {
+          questionElement.innerText = adultQuestions[currentQuestionIndex];
+          currentQuestionIndex++;
+        } else {
+          questionElement.innerText = "Game Over! Refresh to play again.";
+          nextButton.style.display = "none";
+        }
+      }
+
+      nextButton.addEventListener('click', function() {
+        // Start the game by showing the first question
+        displayNextQuestion();
+        // Play dice roll sound
+        let rollSound = document.getElementById("dice-roll-sound");
+        rollSound.play();
+        });
+
+
+      // Start the game by showing the first question
+      displayNextQuestion();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dice</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Dice: Refresh Me</h1>
+
+      <!-- Dice container for Player 1 and Player 2 -->
+      <div class="dice-container">
+        <div class="dice">
+          <p>Player 1</p>
+          <img class="img1" src="./images/dice6.png" alt="Player 1's dice roll" />
+        </div>
+
+        <div class="dice">
+          <p>Player 2</p>
+          <img class="img2" src="./images/dice6.png" alt="Player 2's dice roll" />
+        </div>
+      </div>
+
+      <!-- Roll Dice button below the dice images -->
+      <button class="roll-btn">Roll Dice</button>
+      <div class="score"></div>
+
+      <p id="mini-games">Mini-games</p>
+
+      <!-- Buttons for new games -->
+      <div class="mini-games">
+        <button><a href="truth-or-dare.html" class="game-link">Truth or Dare</a></button>
+        <button><a href="truth-or-dare-adult.html" class="game-link">Truth or Dare (18+)</a></button>
+        <button><a href="never-have-i-ever.html" class="game-link">Never Have I Ever (18+)</a></button>
+      </div>
+      <footer>www 🎲 App Brewery 🎲 com</footer>
+    </div>
+
+    <audio id="dice-roll-sound" src="./assets/dice-roll.mp3"></audio>
+
+    <script src="index.js"></script>
+  </body>
+</html>

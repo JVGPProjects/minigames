@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Truth or Dare</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Truth or Dare</h1>
+
+      <div class="game-content">
+        <p>Choose: Truth or Dare</p>
+        <button id="truth-btn">Truth</button>
+        <button id="dare-btn">Dare</button>
+
+        <div id="question-area">
+          <p id="question"></p>
+        </div>
+
+        
+      </div>
+
+      <p id="mini-games">Mini-games</p>
+
+      <!-- Buttons for new games -->
+      <div class="mini-games">
+        <button><a href="dicee.html" class="game-link">Dice</a></button>
+        <button><a href="truth-or-dare-adult.html" class="game-link">Truth or Dare (18+)</a></button>
+        <button><a href="never-have-i-ever.html" class="game-link">Never Have I Ever (18+)</a></button>
+      </div>
+      
+
+      <footer>www 🎲 App Brewery 🎲 com</footer>
+    </div>
+    <audio id="dice-roll-sound" src="./assets/truth.mp3"></audio>
+
+    <script>
+      // Basic functionality for truth or dare
+      const truthButton = document.getElementById('truth-btn');
+      const dareButton = document.getElementById('dare-btn');
+      const questionArea = document.getElementById('question');
+
+
+      const truthQuestions = [
+        "What's your biggest fear?",
+        "Have you ever lied to get out of trouble?",
+        "What secret do you keep from your friends?",
+        "Ano ang pinaka-nakakahiya mong ginawa sa school?",
+        "Kung may pagkakataon ka, anong bagay na gusto mong baguhin sa iyong sarili?",
+        "Anong klaseng hobby ang gusto mong itry pero hindi mo pa nagagawa?",
+        "Sino ang pinakamalupit na kaibigan mo?",
+        "Ano ang pinaka-latest na bagay na binili mo?",
+        "Kailan ka huling nanood ng movie mag-isa?",
+        "Sino ang pinaka-nakakatuwa mong kaibigan?",
+        "What was the last lie you told?",
+        "Ano ang huling kanta na hindi mo mapigilang kantahin?",
+        "Sino ang pinaka-nakakatuwa mong kaibigan?",
+        "What’s the most embarrassing thing you’ve ever done in public?",
+        "If you had the chance to live anywhere, where would it be?",
+        "Anong klaseng food na hindi mo kayang kainin?",
+        "What’s your biggest pet peeve?",
+        "Sino ang unang tao na babanggitin mo sa iyong diary?",
+        "What’s the weirdest thing you’ve done in front of a mirror?",
+        "Sino ang pinaka-wild mong kaibigan?",
+        "Anong klase ng exercise na gusto mong subukan?",
+        "Anong secret na hindi mo pa nasasabi sa kahit kanino?",
+        "Do you have any weird phobias?",
+        "Kung hindi ka naging tao, anong hayop ka kaya maging?",
+        "What’s the weirdest dream you’ve ever had?",
+        "Who do you go to for advice?",
+        "What’s the last thing you Google searched?",
+        "Anong bagay na gusto mong makuha as a gift for Christmas?",
+        "Have you ever kissed someone under the mistletoe?",
+        "Would you ever prank your best friend?",
+        "What’s the most embarrassing song in your playlist?",
+        "What’s the longest time you’ve gone without showering?",
+        "Would you ever dye your hair a crazy color?",
+        "What’s the funniest thing you’ve done when you were drunk?",
+        "What’s your least favorite subject in school?",
+        "What’s the most ridiculous rumor you’ve ever heard about yourself?",
+        "What’s the one thing you can’t live without?",
+        "Do you believe in ghosts or supernatural stuff?",
+        "What’s the craziest thing you’ve done for love?",
+        "Sino ang pinaka-maingay sa inyong barkada?",
+        "Have you ever farted in public?",
+        "Ano ang pinaka-nakakatakot na bagay na nakita mo?",
+        "What’s your biggest fear?",
+        "Sino ang pinaka-masungit sa inyong grupo?",
+        "Who was your childhood crush?",
+        "What’s your dream vacation destination?",
+        "Anong bagay na hinding-hindi mo matitiis sa isang tao?",
+        "What’s the funniest thing you’ve ever seen on the internet?",
+        "Who do you look up to the most in your life?",
+        "Would you ever consider living abroad?",
+        "What’s the most embarrassing thing you’ve done on a date?",
+        "Have you ever done something that you knew was wrong but did it anyway?",
+        "What’s your weirdest habit?",
+        "What’s the longest time you’ve stayed awake?",
+        "Have you ever had a wardrobe malfunction?",
+        "Would you ever go on a reality show?",
+        "What’s the most embarrassing thing you’ve done at work/school?",
+        "What’s your biggest guilty pleasure?",
+        "Who was your first best friend?",
+        "What’s the funniest thing you’ve done when you were nervous?",
+        "Anong klase ng pet ang gusto mong magkaroon?",
+        "Have you ever had a crush on someone you didn’t know?",
+        "What’s the most embarrassing text you’ve sent?",
+        "What’s the most random thing you own?",
+        "Who’s the last person you texted?",
+        "Anong type ng food ang hindi mo kayang pakawalan?",
+        "What’s your ideal weekend plan?",
+        "What’s the last thing you did for the first time?",
+        "Would you ever try a new hobby?",
+        "What was your first job?",
+        "What’s something you’ve always wanted to try but are too afraid to do?",
+        "What’s your favorite holiday?",
+        "Would you ever live in a tiny house?",
+        "What’s the last movie you watched?",
+        "What’s your most treasured childhood memory?",
+        "Anong place ang hindi mo kayang kalimutan sa buhay mo?",
+        "Who’s your celebrity crush?",
+        "What’s your least favorite chore?",
+        "Would you ever go bungee jumping or skydiving?",
+        "What’s the longest time you’ve gone without your phone?",
+        "Have you ever gotten into trouble with your parents?",
+        "What’s the most random fact you know?",
+        "Would you ever consider moving back in with your parents?",
+        "Have you ever gotten lost in a new place?",
+        "Sino ang pinakamagaling magpatawa sa grupo ninyo?",
+        "What’s something you’ve always wanted to learn how to do?",
+        "What’s your biggest accomplishment so far?",
+        "Have you ever skipped school/work?",
+        "What’s the weirdest thing you've found in your bag/pocket?",
+        "What’s the last song you listened to?",
+        "Who’s your favorite person to talk to?",
+        "What’s your dream job?",
+        "What’s the last TV show you binge-watched?",
+        "Do you prefer being indoors or outdoors?",
+        "Who’s the best person to party with in your group?",
+        "Have you ever gone on an adventure with a friend?",
+        "What’s the best gift you've ever given someone?",
+        "What’s your biggest pet peeve?",
+        "What’s your all-time favorite movie?",
+        "Have you ever met someone famous?",
+        "Would you ever try living without technology?",
+        "Anong lugar na gusto mong marating someday?",
+        "Have you ever been on a road trip?"
+      ];
+
+      const dareQuestions = [
+        "Do 10 push-ups.",
+        "Dance for 30 seconds.",
+        "Talk in an accent for the next 5 minutes.",
+        "Send a voice message to the group chat singing your favorite song.",
+        "Post the last meme you sent to someone in the chat.",
+        "Change your online profile picture to something funny for the next 24 hours.",
+        "Record a funny video of yourself and send it to the group chat.",
+        "Send a picture of your current view or something random you’re looking at right now.",
+        "Pretend to be a robot for 2 minutes and only respond with robotic answers.",
+        "Send a random text to someone and pretend it was meant for someone else.",
+        "Join a voice channel and speak in a funny accent for 5 minutes.",
+        "Share your screen and show your desktop background to the group.",
+        "Post a picture of the weirdest food combination you love but think others might find gross.",
+        "Send an embarrassing selfie (or choose an old one) in the chat.",
+        "Do an impression of a famous celebrity and send a voice recording.",
+        "Change your username to something silly for the next hour.",
+        "Do a funny dance and send a video of it to the group chat.",
+        "Send a really cheesy pickup line to someone in the group chat.",
+        "Join a random online voice chat and just listen to the conversations for 5 minutes.",
+        "Send a message to the group in complete gibberish for 1 minute.",
+        "Take a screenshot of your search history and send it in the group chat (with the embarrassing parts blurred out).",
+        "Challenge someone in the group to a 1-minute rap battle.",
+        "Start an impromptu, silly conversation in the group chat and try to keep it going for 5 minutes."
+      ];
+
+      truthButton.addEventListener('click', function() {
+        const randomTruth = truthQuestions[Math.floor(Math.random() * truthQuestions.length)];
+        questionArea.textContent = randomTruth;
+        // Play dice roll sound
+        let rollSound = document.getElementById("dice-roll-sound");
+        rollSound.play();
+   
+      });
+
+
+      dareButton.addEventListener('click', function() {
+        const randomDare = dareQuestions[Math.floor(Math.random() * dareQuestions.length)];
+        questionArea.textContent = randomDare;
+        // Play dice roll sound
+        let rollSound = document.getElementById("dice-roll-sound");
+        rollSound.play();
+      });
+      
+  
+    </script>
+  </body>
+</html>

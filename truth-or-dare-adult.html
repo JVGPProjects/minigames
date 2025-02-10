@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Truth or Dare (18+)</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Truth or Dare (18+)</h1>
+
+      <div class="game-content">
+        <p>Choose: Truth or Dare</p>
+        <button id="truth-btn">Truth</button>
+        <button id="dare-btn">Dare</button>
+
+        <div id="question-area">
+          <p id="question"></p>
+        </div>
+
+        
+      </div>
+
+      <p id="mini-games">Mini-games</p>
+
+      <!-- Buttons for new games -->
+      <div class="mini-games">
+        <button><a href="dicee.html" class="game-link">Dice</a></button>
+        <button><a href="truth-or-dare.html" class="game-link">Truth or Dare</a></button>
+        <button><a href="never-have-i-ever.html" class="game-link">Never Have I Ever (18+)</a></button>
+      </div>
+
+      <footer>www 🎲 App Brewery 🎲 com</footer>
+    </div>
+
+    <audio id="dice-roll-sound" src="./assets/truth.mp3"></audio>
+
+    <script>
+      // Adult truth or dare functionality
+      const truthButton = document.getElementById('truth-btn');
+      const dareButton = document.getElementById('dare-btn');
+      const questionArea = document.getElementById('question');
+
+
+      const truthQuestions = [
+        "Have you ever been caught doing something embarrassing?",
+        "What's the most scandalous thing you've ever done?",
+        "Have you ever had a crush on someone you shouldn't have?",
+        "Anong pinaka-kagaguhan na ginawa mo para magustuhan ka ng crush mo?",
+        "Have you ever been in love with someone who didn’t know you exist?",
+        "Anong pinakamatinding sikreto na tinatago mo sa pamilya mo?",
+        "When was the last time you did something embarrassing?",
+        "Kung may chance kang makipag-date sa ex mo, gagawin mo ba?",
+        "Have you ever sent a naughty text by mistake?",
+        "Kung biglang yumaman ka, anong unang-unang bibiliin mo?",
+        "Ano ang pinaka-wild na fantasy mo na hindi mo pa nasusubukan?",
+        "Have you ever kissed someone and regretted it instantly?",
+        "Anong pinaka-nakakahiyang moment mo sa social media?",
+        "Who was your first crush and what did you like about them?",
+        "Na-miss mo na ba ang ex mo kahit na nasaktan ka?",
+        "What’s the worst thing you've said to someone in an argument?",
+        "Have you ever cheated in a relationship?",
+        "Anong klaseng relationship ang gusto mong magkaroon in the future?",
+        "Have you ever stalked someone online?",
+        "Anong pinaka-kontrobersyal na bagay na ginawa mo?",
+        "Would you date your best friend?",
+        "How many people have you kissed?",
+        "Have you ever been caught doing something embarrassing by your parents?",
+        "Anong pinakamalupit na joke na nasabi mo sa isang date?",
+        "Would you forgive your partner if they cheated on you?",
+        "What’s your guilty pleasure when no one is watching?",
+        "Would you ever have a one-night stand?",
+        "Anong pinaka-horrible na thing na ginawa mo sa ex mo?",
+        "Who in the room do you think you could get along with best?",
+        "Have you ever faked a relationship to make someone jealous?",
+        "Ano ang masasabi mo sa sarili mong sexual preference?",
+        "Anong embarrassing moment sa school na hindi mo pa nakakalimutan?",
+        "Have you ever kissed someone of the same gender?",
+        "Ano ang pinaka-tagal na hindi mo nakasama ang mga kaibigan mo?",
+        "Would you marry someone even if your friends and family didn’t approve?",
+        "How many times have you lied to your parents about where you were?",
+        "Who was the last person you had a crush on?",
+        "Have you ever tried online dating?",
+        "Anong pinaka-wild na date na naranasan mo?",
+        "Have you ever kissed someone under the influence?",
+        "Have you ever been caught in the act (of anything embarrassing)?",
+        "Anong prank ang ginawa mo sa best friend mo na sobra ang reaksyon?",
+        "Who’s your current crush, and would you tell them now?",
+        "Have you ever had feelings for someone you shouldn't have?",
+        "What’s the weirdest thing you’ve done to impress someone?",
+        "Have you ever kept a secret from your best friend?",
+        "Have you ever cheated on a test?",
+        "Anong pinaka-wild na lugar na gusto mong mag-sex?",
+        "Have you ever kissed someone at a party?",
+        "Would you ever sleep with someone just to get over someone else?",
+        "Have you ever broken someone’s heart?",
+        "Anong mga bagay na hindi mo kayang itago?",
+        "Have you ever had a secret crush on someone you worked with?",
+        "Have you ever hooked up with someone you didn’t know very well?",
+        "Have you ever been in love with someone who didn’t feel the same?",
+        "What’s the craziest thing you’ve done during a night out?",
+        "Have you ever fallen in love at first sight?",
+        "Anong pinaka-awkward na moment mo sa date?",
+        "Have you ever kept in touch with an ex?",
+        "Anong type ng dating na hindi mo kakayanin?",
+        "Have you ever been in a relationship just to avoid being alone?",
+        "Who would you choose to date in this room?",
+        "Have you ever had a crush on a teacher or boss?",
+        "What’s the most awkward thing you’ve done to get someone's attention?",
+        "Who do you think has the most annoying habit in this group?",
+        "Have you ever tried to impress someone with a fake personality?",
+        "Anong lie ang pinaka-memorable mo na sinabi sa ex mo?",
+        "What’s the longest time you’ve gone without a relationship?",
+        "Anong pinaka-wild na prank na ginawa mo sa ex mo?",
+        "Have you ever cheated on a partner with someone else in this room?",
+        "Would you ever participate in an orgy?",
+        "What’s the most dangerous thing you’ve done for fun?",
+        "Have you ever been caught doing something that you shouldn’t be doing?",
+        "What’s the worst pickup line you’ve ever heard or used?",
+        "Have you ever sexted someone?",
+        "If you could sleep with anyone, who would it be?",
+        "Have you ever had a crush on someone at work?",
+        "Anong type ng gift na gusto mong matanggap from a lover?",
+        "Would you marry someone for money even if you didn’t love them?",
+        "What’s the biggest lie you've told a crush?",
+        "How many people have you slept with?",
+        "If you could change your past, what would you do differently?",
+        "Do you ever feel jealous of your friends in relationships?",
+        "Have you ever had a one-night stand?",
+        "Have you ever kissed someone in the dark just for the fun of it?",
+        "Anong sex position ang gusto mong subukan?",
+        "Have you ever had a secret relationship?",
+        "Have you ever made out in public?",
+        "Have you ever been in an open relationship?",
+        "Anong pinakalihim na bagay na ginawa mo sa harap ng iyong pamilya?",
+        "Have you ever been attracted to someone of the same sex?",
+        "Have you ever had an embarrassing encounter at work or school?",
+        "Who is the most annoying person in the room right now?",
+        "Would you date someone with a huge age difference from you?",
+        "Have you ever kissed a friend’s ex?",
+        "What’s the weirdest thing you’ve done for love?",
+        "Have you ever been tempted to cheat on your partner?",
+        "Anong bagay ang hindi mo kayang ibigay sa isang tao?",
+        "Who was your last kiss?",
+        "What’s the worst thing you’ve done at a party?",
+        "Would you go back to an ex if they begged you?",
+        "Have you ever had a crush on your best friend's partner?",
+        "Have you ever made a sex tape?"
+      ];
+
+      const dareQuestions = [
+        "Kiss the person closest to you on the cheek.",
+        "Send a flirty text to your crush.",
+        "Act like an animal of your choice for 2 minutes.",
+        "Mag-send ng flirty message kay crush, pero with 'kilig' emojis. Gamitin mo na ang ‘po’ at ‘opo’ para safe. 😜",
+        "Mag-pose ka as if ikaw ang pinakamaganda sa buong Pilipinas, tapos i-post mo. Tapos sabihing, 'Huwag nang inggit.' 😆",
+        "I-video mo ang sarili mo habang nagbabalat ng mangga na parang sexy chef. 🍋",
+        "Magtanong ka sa crush mo kung anong flavor ng ice cream ang gusto niya, pero sabihin mong ‘I’m melting for you’. 😍",
+        "Kumuha ng video na naglalakad ka ng parang model sa catwalk, tapos pa-cute ka na parang walang pake sa lahat. 💃",
+        "Mag-send ng voice message na parang kausap mo yung ex mo, pero gawin mong super awkward. ‘Di ko nga alam kung bakit kita iniiwasan eh!’ 😂",
+        "I-flirt mo yung friend mo na malapit sa'yo, tapos sabihin mong ‘Yung sagot mo, parang slow burn.’ 🔥",
+        "Pumili ng isang ‘romantic’ emoji at mag-send sa group chat ng 5 minutes na walang context. 😘",
+        "Mag-send ng selfie na naka ‘bed hair’ at sabihin, ‘Woke up like this, ready for the day.’ Pero alam mong hindi pa kayo ready. 😂",
+        "I-upload mo ang pinakamatamis mong ‘crush confession’ sa group chat, pero gawin mo itong ‘super cheesy’. 💌",
+        "Mag-text ka ng ‘Hi’ kay crush at sabay sabihing, ‘Di kita tinitipa, hindi ko pa nakikita ‘yung tunay mong ganda.’ 💅",
+        "Kumuha ng picture na parang ‘ready for a date,’ tapos magsabi, ‘Wala lang, style lang.’ Pero puro tawa lang. 😆",
+        "Mag-sayaw ka ng isang dance challenge sa video call tapos magpanggap na ikaw ang ultimate ‘TikTok star’. 💃",
+        "Mag-video na naka ‘bedroom eyes’ tapos sabihin, ‘Sana all may ganito.’ 😏",
+        "Mag-pose ka ng ganitong ‘ang cute mo but also intimidating’ sa selfie mo, tapos mag-caption ng ‘Who’s your crush?’ 📸",
+        "I-act out mo yung pinaka-silly na pick-up line, tapos sabihin, ‘Huwag mong gawing seryoso, ang saya lang!’ 😂",
+        "Mag-pose ng parang sexy animal, tapos ang caption, ‘Feel mo ba?’ 🦁",
+        "Send ng ‘jowa goals’ selfie na mukha kang hindi ready, tapos sabihing ‘Lagi naman tayong ganito, ‘di ba?’ 😆",
+        "Magbigay ng ‘dating advice’ kay isa sa group chat, pero ‘yung tip mo parang asar na, ‘Basta ‘wag kang magpapaasa.’ 🤷‍♀️",
+        "Mag-sayaw na parang ang saya-saya mo kahit na hindi ka pa nagkakaroon ng date in 5 years. 😂"
+      ];
+
+      truthButton.addEventListener('click', function() {
+        const randomTruth = truthQuestions[Math.floor(Math.random() * truthQuestions.length)];
+        questionArea.textContent = randomTruth;
+        // Play dice roll sound
+        let rollSound = document.getElementById("dice-roll-sound");
+        rollSound.play();
+      });
+
+      dareButton.addEventListener('click', function() {
+        const randomDare = dareQuestions[Math.floor(Math.random() * dareQuestions.length)];
+        questionArea.textContent = randomDare;
+        // Play dice roll sound
+        let rollSound = document.getElementById("dice-roll-sound");
+        rollSound.play();
+      });
+
+
+    </script>
+  </body>
+</html>

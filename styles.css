@@ -1,0 +1,155 @@
+/* Main container - Center everything */
+.container {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+}
+
+/* Center the dice images and add spacing between them */
+.dice {
+  display: inline-block;
+  margin: 20px;
+  text-align: center;
+}
+
+/* Body styling with dark background */
+body {
+  background-color: #393E46;
+  margin: 0;
+  font-family: 'Indie Flower', cursive;
+  color: #EEEEEE;
+}
+
+/* Heading styling */
+h1 {
+  margin: 30px;
+  font-family: 'Lobster', cursive;
+  text-shadow: 5px 0 #232931;
+  font-size: 8rem;
+  color: #4ECCA3;
+  text-align: center;
+}
+
+/* Paragraph styling (Player text) */
+p {
+  font-size: 2rem;
+  color: #4ECCA3;
+  font-family: 'Indie Flower', cursive;
+}
+
+/* Make dice images responsive and ensure aspect ratio is maintained */
+img {
+  width: 80%;
+  max-width: 200px; /* Maximum width for images */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Dice hover effect */
+img:hover {
+  transform: scale(1.1);
+}
+
+/* Footer styling */
+footer {
+  margin-top: 5%;
+  color: #EEEEEE;
+  text-align: center;
+  font-family: 'Indie Flower', cursive;
+  font-size: 1rem;
+}
+
+/* Styling for the "Mini-games" title */
+#mini-games {
+  font-size: 2rem;  /* Adjust the font size */
+  color: #4ECCA3;   /* Adjust the text color */
+  margin-bottom: 20px; /* Adds space below the title */
+}
+
+/* Styling for the game links */
+.mini-games a {
+  display: inline-block;
+  font-size: 1.5rem;
+  background-color: #4ECCA3;
+  color: white;
+  text-decoration: none;  /* Remove the underline */
+  border-radius: 50px; /* Rounded corners */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect for links */
+.mini-games a:hover {
+  background-color: #2A9D8F;  /* Darker shade on hover */
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+/* Active effect when a link is clicked */
+.mini-games a:active {
+  background-color: #21867A;  /* Even darker shade when clicked */
+  transform: scale(1);  /* Reset zoom effect */
+}
+
+#mini-games {
+  font-size: 3rem;  
+  color: #4ECCA3; 
+  margin-top: 80px; 
+  margin-bottom: 5px;
+}
+
+/* Button styling */
+button {
+  padding: 15px 30px;
+  font-size: 2rem;
+  background-color: #4ECCA3;
+  color: white;
+  border: none;
+  border-radius: 50px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 20px; /* Adds spacing between button and dice */
+}
+
+/* Button hover effect */
+button:hover {
+  background-color: #2A9D8F; /* Darker shade on hover */
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+/* Button active effect (when clicked) */
+button:active {
+  background-color: #21867A; /* Even darker shade when pressed */
+  transform: scale(1); /* Reset zoom effect when clicked */
+}
+
+/* Button styling on mobile (responsive design) */
+@media (max-width: 600px) {
+  button {
+    font-size: 1.5rem; /* Slightly smaller text on mobile */
+    padding: 12px 25px; /* Adjust padding on smaller screens */
+  }
+}
+
+
+/* Media Query for small screens (Mobile) */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 4rem; /* Reduce font size on mobile */
+  }
+
+  p {
+    font-size: 1.5rem; /* Smaller text on mobile */
+  }
+
+  .container {
+    width: 90%; /* Use more screen width on mobile */
+  }
+
+  .dice {
+    margin: 10px; /* Reduce margin for mobile */
+  }
+
+  img {
+    width: 70%; /* Adjust image size on mobile */
+  }
+}
